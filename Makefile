@@ -1,5 +1,5 @@
 BRANCH=$${CI_COMMIT_BRANCH:-jal}
-ENVS=xiao
+ENVS=qtpy
 PROG=clock
 REPO=pharmdata.ddns.net
 MQTTHOST=pharmdata.ddns.net
@@ -10,8 +10,8 @@ all: push
 	pio run
 	touch .build
 
-upload.xiao: .build
-	pio run -e xiao --target upload
+upload.qtpy: .build
+	pio run -e qtpy --target upload
 
 push: .build
 	for ENV in $(ENVS) ; do \
@@ -23,9 +23,9 @@ push: .build
 monitor:
 	pio device monitor
 
-mu: upload.xiao monitor
+mu: upload.qtpy monitor
 
-um.xiao: upload.xiao monitor
+um.qtpy: upload.qtpy monitor
 
 
 
